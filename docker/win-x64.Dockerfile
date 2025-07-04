@@ -3,12 +3,12 @@
 # Sample build
 #   docker build . -f docker/win-x64.Dockerfile   -t aggregator:win-x64   --build-arg MAJOR_MINOR_PATCH=1.2.3 --build-arg PRERELEASE_TAG=beta-test-42
 # see tags at https://hub.docker.com/_/microsoft-dotnet-sdk/
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 ARG MAJOR_MINOR_PATCH=0.0.0
 ARG PRERELEASE_TAG=
 ARG CONFIGURATION=Release
-ARG FRAMEWORK=net6.0
+ARG FRAMEWORK=net9.0
 ARG RUNTIME_IDENTIFIER=win-x64
 
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -29,7 +29,7 @@ RUN dotnet publish --no-restore -f $env:FRAMEWORK -r $env:RUNTIME_IDENTIFIER -c 
 # see tags at https://hub.docker.com/_/microsoft-dotnet-aspnet/
 # 1809 should guarantee compatibility from Server 2019 up
 # note that Server 2016 is unsupported https://github.com/dotnet/dotnet-docker/issues/1469
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-nanoserver-1809 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-nanoserver-1809 AS final
 
 WORKDIR /app
 

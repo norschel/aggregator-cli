@@ -1,12 +1,12 @@
 # Sample build
 #   docker build . -f docker/linux-x64.Dockerfile -t aggregator:linux-x64 --build-arg MAJOR_MINOR_PATCH=1.2.3 --build-arg PRERELEASE_TAG=beta-test-42
 # see tags at https://hub.docker.com/_/microsoft-dotnet-sdk/
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 ARG MAJOR_MINOR_PATCH=0.0.0
 ARG PRERELEASE_TAG=
 ARG CONFIGURATION=Release
-ARG FRAMEWORK=net6.0
+ARG FRAMEWORK=net9.0
 ARG RUNTIME_IDENTIFIER=linux-musl-x64
 
 COPY ./art /workspace/art
@@ -23,7 +23,7 @@ RUN dotnet publish --no-restore -f     $FRAMEWORK -r     $RUNTIME_IDENTIFIER -c 
 
 
 # see tags at https://hub.docker.com/_/microsoft-dotnet-aspnet/
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine3.14 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
 
 WORKDIR /app
 
