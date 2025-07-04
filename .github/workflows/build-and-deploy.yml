@@ -38,7 +38,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      DOTNETSDK_VERSION: '6.0.201' # SDK Version to use.
+      DOTNETSDK_VERSION: '9.0.101' # SDK Version to use.
       CONFIGURATION: Release
       SONAR_ORG: 'tfsaggregator'
       SONAR_PROJECTKEY: 'tfsaggregator_aggregator-cli'
