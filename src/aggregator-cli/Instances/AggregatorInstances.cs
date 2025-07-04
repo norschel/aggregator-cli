@@ -373,7 +373,7 @@ namespace aggregator.cli
         private async Task ForceFunctionRuntimeVersionAsync(InstanceName instance, CancellationToken cancellationToken)
         {
             const string TargetVersion = "~4";
-            const string DotNetVersion = "v6.0";
+            const string DotNetVersion = "v9.0";
             // Change V2/V3 to V4 FUNCTIONS_EXTENSION_VERSION ~4
             var webFunctionApp = await GetWebApp(instance, cancellationToken);
             var currentAzureRuntimeVersion = webFunctionApp.GetAppSettings()
